@@ -2,10 +2,10 @@ For part 1-3, I followed the assignment instructions and used the provided sampl
 
 For my latency tests for part 4, I created a Python script and used the requests, time, and statistics libraries for my implementation. I first
 started a session for the US and EU VMs respectively to reduce latency of having to create a new connection for each request with requests.Session().
-Then in a loop, I used the time.perf_counter() function for the most accurate measure of time before and after making a post or a list request to the
-appropriate url. Finally, I averaged the results with statistics.mean() to get the final estimate.
+Then in a loop, I used the time.perf_counter() function for the most accurate measure of time before and after making a register or a list request to
+the appropriate url. Finally, I averaged the results with statistics.mean() to get the final estimate.
 
 For my eventual consistency test, I added to the script above and used the same session as for the latency tests. Iteratively, I generated a unique
-username by appending the loop index to “user_ec” and created a post request to the IP address and url for the US VM. Then, I immediately created a
-list request to the IP address and url for the EU VM and checked whether or not the current username was present in the returned list. I made sure
+username by appending the loop index to “user_ec” and posted a register request to the IP address and url for the US VM. Then, I immediately sent 
+a list request to the IP address and url for the EU VM and checked whether or not the current username was present in the returned list. I made sure
 the usernames did not overlap with the latency test posts and cleared the database between re-runs. 
