@@ -1,1 +1,19 @@
+For the average latency test over 10 iterations, the latencies are as follows:
+us-central1:
+Register avg (ms): 89.64
+List avg (ms): 77.24
 
+europe-west1: 
+Register avg (ms): 542.28
+List avg (ms): 434.72
+
+For the eventual consistency experiment for Part IV-B, I got 0 misses for 100 attempts to register then retrieve a new user. 
+
+The latencies differed significantly between the two VMs because of a difference in distance. As expected, requests made to the us-central1 VM had
+much lower latency because it is much closer to my location and also the location of the database, which is also hosted in us-central1, than the
+europe-west1 VM. The difference in network distance affects the time it takes for signals to travel and also affects whether intermediate hops are
+necessary when sending information. 
+
+I got 0 misses so my consistency experiment shows that data replication across regions is able to happen relatively quickly. We likely see this
+result because the time difference between the register and list requests is enough for the update to propagate to the other replicas of the data.
+Therefore, we are not able to detect any inconsistencies even when querying immediately after an update to a different region.
